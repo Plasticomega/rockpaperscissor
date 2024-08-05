@@ -2,32 +2,81 @@
 let humanScore = 0;
 let computerScore = 0;
 
+let computerChoice
 function getComputerChoice(){
     let random = Math.floor(Math.random()*3+1);
     if(random === 1){
+        computerChoice = "rock"
         return "rock"
     }
     else if(random ===2){
+        computerChoice = "paper"
         return "paper"
     }
     else if(random === 3){
+        computerChoice = "scissors"
         return "scissors"
-    }
-    
+    }  
 }
 
-function getHumanChoice(){
-    let choice = prompt("enter choice between: rock,paper,scissors")
-    let choiceLow = choice.toLowerCase()   
-    if(choiceLow != "rock" && choiceLow != "paper" && choiceLow != "scissors"){
-        alert("invalid choice")
-    }
-    else{
-        return choiceLow
-    }
+function changeComputer(){
+    let computerimg = document.querySelector('.computerimg')
+
+    const rockchoice = document.createElement('img')
+    rockchoice.src = 'rock.png'
+    rockchoice.classList.add('computerimg')
+
+    const paperchoice = document.createElement('img')
+    paperchoice.src = 'paper.png'
+    paperchoice.classList.add('computerimg')
     
+    const scissorschoice = document.createElement('img')
+    scissorschoice.src = 'scissors.png'
+    scissorschoice.classList.add('computerimg')
+
+    if(computerChoice == 'rock'){
+        computerimg.replaceWith(rockchoice)
+    }
+    else if(computerChoice == 'paper'){
+        computerimg.replaceWith(paperchoice)
+    }
+    else if(computerChoice == 'scissors'){
+        computerimg.replaceWith(scissorschoice)
+    }
 }
- 
+
+changeComputer()
+
+
+
+
+
+let humanChoice
+function getHumanChoice(){
+    let rock = document.querySelector(".rock")
+    rock.addEventListener("click", choicerock)
+    
+    let paper = document.querySelector(".paper")
+    paper.addEventListener("click", choicepaper)
+    
+    let scissors = document.querySelector(".scissors")
+    scissors.addEventListener("click", choicescissors)
+}
+
+ getHumanChoice()
+ function choicerock(){
+    humanChoice = "rock"
+    playRound(getComputerChoice(),humanChoice)
+ }
+
+ function choicepaper(){
+    humanChoice = "paper"
+    playRound(getComputerChoice(),humanChoice)
+ } 
+ function choicescissors(){
+    humanChoice = "scissors"
+    playRound(getComputerChoice(),humanChoice)
+ }
 
 function playRound(computerChoice,humanChoice){
     console.log(humanChoice)
@@ -53,12 +102,13 @@ function playRound(computerChoice,humanChoice){
         console.log("Computer wins, Scissors beats paper")
         computerScore += 1
     }
+    changeComputer()
     console.log(`Human score is: ${humanScore}`)
     console.log(`Computer score is: ${computerScore}`)
 }
 
 
-function playGame(){
+/*function playGame(){
     for(let i=0;i <= 5;i++){
         console.log(`Its round ${i}`)
         playRound(getComputerChoice(),getHumanChoice())
@@ -72,4 +122,6 @@ function playGame(){
     }
 }
 
-playGame()
+playGame()*/
+
+
