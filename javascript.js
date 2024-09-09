@@ -1,6 +1,10 @@
 
 let humanScore = 0;
 let computerScore = 0;
+let totalrounds = 0;
+let computerwin 
+let humanwin 
+let draw 
 
 let computerChoice
 function getComputerChoice(){
@@ -79,33 +83,115 @@ function getHumanChoice(){
  }
 
 function playRound(computerChoice,humanChoice){
-    console.log(humanChoice)
-    console.log(computerChoice)
+    computerwin = false
+    humanwin = false
+    draw = false
     if(computerChoice == humanChoice){
-        console.log("It's a draw")
+        draw = true
     }else if(computerChoice === 'rock' && humanChoice ==='paper'){
-        console.log("Human wins ,Paper beats rock ")
+        humanwin = true
         humanScore += 1
     }else if(computerChoice === 'rock' && humanChoice ==='scissors'){
-        console.log("Computer wins,Rock beats scissors")
+        computerwin = true
         computerScore += 1
     }else if(computerChoice === 'paper' && humanChoice ==='rock'){
-        console.log("Computer wins, Paper beats rock")
+        computerwin = true
         computerScore += 1
     }else if(computerChoice === 'paper' && humanChoice ==='scissors'){
-        console.log("Human wins, Scissors beat paper")
+        humanwin = true
         humanScore += 1
     }else if(computerChoice=== 'scissors' && humanChoice ==='rock'){
-        console.log("Human wins,Rock beats scissors")
+        humanwin = true
         humanScore += 1
     }else if(computerChoice === 'scissors' && humanChoice ==='paper'){
-        console.log("Computer wins, Scissors beats paper")
+        computerwin = true
         computerScore += 1
     }
     changeComputer()
-    console.log(`Human score is: ${humanScore}`)
-    console.log(`Computer score is: ${computerScore}`)
+    updateScore()
+    whowon()
+    
+    totalrounds += 1;
+    if(totalrounds === 5){
+        wincondition()
+    }else{
+        changekirby()
+    }
+    
 }
+
+
+function updateScore(){
+ let compscr = document.querySelector('.computerscore')
+ let humscr = document.querySelector('.humanscore')
+ compscr.textContent = `Computer Score : ${computerScore}`
+ humscr.textContent = `Your Score : ${humanScore}`
+}
+updateScore()
+
+function whowon(){
+    let winner = document.querySelector('.winner')
+    if(computerwin){
+        winner.textContent = `Computer Wins ${computerChoice} beats ${humanChoice}`
+    }else if(humanwin){
+        winner.textContent = `Human Wins ${humanChoice} beats ${computerChoice}`
+    }else if(draw){
+        winner.textContent = `It's a draw!`
+    }
+    
+}
+
+function changekirby(){
+    let kirbyComputer = document.querySelector('.kirbycomp')
+    let kirbyHuman = document.querySelector('.kirbyhuman')
+    if(computerwin){
+        kirbyComputer.src = 'kirby1up.gif'
+        setTimeout(() => {
+        kirbyComputer.src = 'kirbyidle.gif';
+    }, 2000);
+    }
+    if(humanwin){
+        kirbyHuman.src = 'kirby1up.gif'
+        setTimeout(() => {
+        kirbyHuman.src = 'kirbyidle.gif';
+    }, 2000);
+    }
+}
+
+function wincondition(){
+    let kirbyComputer = document.querySelector('.kirbycomp')
+    let kirbyHuman = document.querySelector('.kirbyhuman')
+    let computerwinner = false
+    let humanwinner = false
+    if(computerScore > humanScore){
+        console.log('computer won')
+        computerwinner = true
+    }else if(computerScore < humanScore){
+        console.log('human won')
+        humanwinner = true
+    }else{
+        draw = true
+    }
+    computerScore = 0
+    humanScore = 0
+    updateScore()
+    if(computerwinner){
+        kirbyComputer.src = 'kirbywin.gif'
+        kirbyHuman.src = 'kirbyloss.gif'
+    }
+    if(humanwinner){
+        kirbyHuman.src = 'kirbywin.gif'
+        kirbyComputer.src = 'kirbyloss.gif'
+    }
+    if(draw){
+        kirbyComputer.src = ''
+        kirbyHuman.src = ''
+    }
+
+    
+}
+
+
 
 
 /*function playGame(){

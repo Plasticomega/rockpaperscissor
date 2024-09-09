@@ -1,7 +1,17 @@
-*{
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('mariobackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    font-family: 'Press Start 2P', cursive;
+    overflow-x: hidden;
     background-color: black;
     color: white;
 }
+
 
 .screen{
   display: flex;
@@ -23,4 +33,7 @@
   margin-top: 500px;
 }
 
-
+.kirbycomp,.kirbyhuman{
+  width: 200px;
+  height: 200px;
+}
