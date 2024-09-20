@@ -14,7 +14,11 @@ body {
 
 
 .screen{
+  position: absolute;
   display: flex;
+  bottom: 250px; /* Adjust this value to make the player appear on top of the "land" */
+  left: 50%; /* Center the player horizontally */
+  transform: translateX(-50%); /* Fine-tune horizontal centering */
 }
 
 .player{
@@ -28,9 +32,11 @@ body {
 }
 
 .UI{
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
 }
 
 .kirbycomp,.kirbyhuman{
@@ -40,8 +46,30 @@ body {
 
 .kirby-player{
     position: absolute;
-    bottom: 20px; /* Adjust this value to make the player appear on top of the "land" */
+    bottom: 40px; /* Adjust this value to make the player appear on top of the "land" */
     left: 50%; /* Center the player horizontally */
     transform: translateX(-50%); /* Fine-tune horizontal centering */
-    width: 100px; /* Adjust player size */
+    width: 1000px; /* Adjust player size */
+    display: flex;
+    justify-content:space-between;
 }
+
+.rock,.paper,.scissors{
+  width: 100px;
+  height: 100px;
+}
+
+.computerimg{
+  width: 100px;
+  height: 100px;
+}
+
+.kirbycomp{
+  transform: scaleX(-1)
+}
+
+.computer{
+  display: flex;
+  align-items: center;
+}
+
