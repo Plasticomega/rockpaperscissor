@@ -1,13 +1,13 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('mariobackground.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
+    position: relative; /* To contain the absolute positioning of the player */
+    width: 100%; /* Adjust according to your design */
+    height: 100vh; /* Full viewport height */
+    background: url('mariobackground.png') no-repeat center center/cover;
+    background-attachment: fixed;
     font-family: 'Press Start 2P', cursive;
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: black;
     color: white;
 }
@@ -36,4 +36,12 @@ body {
 .kirbycomp,.kirbyhuman{
   width: 200px;
   height: 200px;
+}
+
+.kirby-player{
+    position: absolute;
+    bottom: 20px; /* Adjust this value to make the player appear on top of the "land" */
+    left: 50%; /* Center the player horizontally */
+    transform: translateX(-50%); /* Fine-tune horizontal centering */
+    width: 100px; /* Adjust player size */
 }
